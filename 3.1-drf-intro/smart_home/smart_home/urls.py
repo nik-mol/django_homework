@@ -13,10 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
+from measurement.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('measurement.urls')),  # подключаем маршруты из приложения measurement
-]
+    path('api/v1/', include('measurement.urls')),  # подключаем маршруты из приложения measurement 
+     path('', home),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

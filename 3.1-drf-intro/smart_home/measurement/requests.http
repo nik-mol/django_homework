@@ -1,0 +1,49 @@
+GET http://localhost:8000/api/v1/sensors/
+
+Content-Type: application/json
+
+###
+
+POST http://localhost:8000/api/v1/sensors/
+
+Content-Type: application/json
+
+{
+  "name": "ESP8",
+  "description": "Датчик на кухне за холодильник"
+}
+
+###
+
+POST http://localhost:8000/api/v1/measurements/
+
+Content-Type: application/json
+
+{  
+    "sensor":  1,
+    "temperature": 54.0
+}
+
+
+###
+
+PUT http://localhost:8000/api/v1/sensor/1
+
+Content-Type: application/json
+
+{
+  "name": "ESP3",
+  "description": "Датчик на кухне за холодильник"
+}
+
+
+###
+
+GET http://localhost:8000/api/v1/sensorview/2
+
+###
+
+DELETE http://localhost:8000/api/v1/deletesensor/4
+
+###
+
