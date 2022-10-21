@@ -1,20 +1,30 @@
+from attr import fields
 from rest_framework import serializers
+
+from .models import Product, Stock
 
 
 class ProductSerializer(serializers.ModelSerializer):
     # настройте сериализатор для продукта
-    pass
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'description']
 
 
 class ProductPositionSerializer(serializers.ModelSerializer):
     # настройте сериализатор для позиции продукта на складе
-    pass
+    class Meta:
+        model = Stock
+        fields = ['id', 'address', 'products']
 
 
 class StockSerializer(serializers.ModelSerializer):
     positions = ProductPositionSerializer(many=True)
 
     # настройте сериализатор для склада
+    class Meta:
+        model = Stock
+        fields = ['id', 'quantity', 'price']
 
     def create(self, validated_data):
         # достаем связанные данные для других таблиц
@@ -26,6 +36,7 @@ class StockSerializer(serializers.ModelSerializer):
         # здесь вам надо заполнить связанные таблицы
         # в нашем случае: таблицу StockProduct
         # с помощью списка positions
+        
 
         return stock
 
