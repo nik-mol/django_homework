@@ -74,9 +74,13 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],    
 }
 
 WSGI_APPLICATION = 'api_with_restrictions.wsgi.application'
@@ -90,7 +94,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'netology_classified_ads',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '5432',         
+        'USER': 'postgres',
+        'PASSWORD': '310585',
     }
 }
 
